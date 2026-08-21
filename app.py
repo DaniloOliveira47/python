@@ -43,10 +43,28 @@ def get_son(son_id):
         return jsonify({"message": "Filho não encontrado"}), 404
     return jsonify(son)
 
+@app.route("/sons/<int:son_id>", methods=["PUT"])
+def update_son(son_id):
+    son = next((s for s in sons if s["id"] == son_id), None)
+    if not son:
+        return jsonify({"message": "Filho não encontrado"}), 404
 
+    data = request.get_json()
+    son["name"] = data.get("name", son["name"])
+    son["tasks"] = [
+        {
+            "nameTask": task.get("nameTask"),
+        }
+        for task in data.get("tasks", son["tasks"])
+    ]
 
+    return jsonify({"message": "Filho atualizado", "Filho": son})
 
-
+@app.route("/sons/<int:son_id>", methods=["DELETE"])
+def delete_son(son_id):
+    global sons
+    sons = [s for s in sons if s["id"] != son_id]
+    return jsonify({"message": "Filho deletado"})
 
 if __name__ == "__main__":
     app.run(debug=True)
