@@ -33,3 +33,7 @@ class Usuario(Base):
         String(20),
         nullable=False
     )
+    id_familia: Mapped[int] = mapped_column(
+        nullable=False
+    )
+    

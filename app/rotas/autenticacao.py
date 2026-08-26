@@ -11,7 +11,8 @@ router = APIRouter(
 )
 
 
-@router.post("/cadastrar")
+@router.post("/cadastro")
+
 def cadastrar_usuario(
     dados: CadastroUsuario,
     banco: Session = Depends(obter_banco)

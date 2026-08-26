@@ -3,6 +3,10 @@ from fastapi import FastAPI
 from app.banco.base import Base
 from app.banco.conexao import motor
 from app.modelos.usuario import Usuario
+from app.modelos.familia import Familia
+from app.modelos.mesada import Mesada
+from app.modelos.tarefa import Tarefa
+
 from app.rotas.autenticacao import router as rota_autenticacao
 
 
